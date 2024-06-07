@@ -9,7 +9,7 @@ const ClaimForm = ({id}:{id:string}) => {
   const [createClaim] = useCreateClaimsMutation()
   const [distinguishingFeatures,setDistinguishingFeatures] = useState('')
   const [lostDate,setLostDate] = useState('')
-  const router = useRouter('')
+  const router = useRouter()
 
   const submitHandle = async(e:any)=>{
     e.preventDefault()
