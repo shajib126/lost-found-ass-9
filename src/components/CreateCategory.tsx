@@ -1,7 +1,7 @@
 'use client'
 import { useCreateCategoryMutation } from "@/redux/api/baseApi";
 import { MutationError } from "@/utils/MutationError";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -10,8 +10,7 @@ const CreateCategory = () => {
   const [name, setName] = useState("");
 
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const returnUrl = searchParams.get('returnUrl');
+ 
 
   const handleSubmit = async(e:any)=>{
     e.preventDefault()
@@ -25,7 +24,7 @@ const CreateCategory = () => {
             toast.error(error)
         }else{
             toast.success('Category Created successfully')
-            router.push(returnUrl as string);
+            router.push('/');
         }
     } catch (error) {
         const errorData = error as {data:{message:string}}
