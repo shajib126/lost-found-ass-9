@@ -13,8 +13,8 @@ import FormData from 'form-data';
 // };
 
 export const runtime = 'edge';
-
-export async function POST(req: NextRequest) {
+export const dynamic = 'force-dynamic'
+export async function POST(req: NextRequest,res:NextResponse) {
   const { image } = await req.json();
   const apiKey = '2dc238de9f48a67a5bdcff9cc99f58b8';
 
