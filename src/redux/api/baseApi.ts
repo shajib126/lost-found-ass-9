@@ -3,6 +3,12 @@ import { RootState } from "../store"
 const prodApi = 'https://assign-9-five.vercel.app/api'
 const localApi = 'http://localhost:5000/api'
 
+
+const serializeQueryParams = (params:any) => {
+    const searchParams = new URLSearchParams(params);
+    return searchParams.toString();
+  };
+
 export const baseApi = createApi({
     baseQuery:fetchBaseQuery({baseUrl:`${prodApi}`,credentials:'include',prepareHeaders:(headers,{getState})=>{
       const token = (getState() as RootState).auth.token
@@ -93,8 +99,8 @@ export const baseApi = createApi({
             })
         }),
         foundItems:build.query({
-            query:()=>({
-                url:'/found-items',
+            query:(params)=>({
+                url:`/found-items?${serializeQueryParams(params)}`,
                 method:'GET'
             })
         }),
@@ -112,8 +118,8 @@ export const baseApi = createApi({
             })
         }),
         lostItems:build.query({
-            query:()=>({
-                url:'/lost-items',
+            query:(params)=>({
+                url:`/lost-items?${serializeQueryParams(params)}`,
                 method:'GET',
                 
             })

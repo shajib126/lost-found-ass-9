@@ -1,6 +1,6 @@
 "use client";
 import { useFoundItemsQuery } from "@/redux/api/baseApi";
-import React from "react";
+import React, { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import { MdOutlineSubtitles } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
@@ -12,15 +12,44 @@ import { useRouter } from "next/navigation";
 
 
 const page = () => {
-  const { data } = useFoundItemsQuery("");
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+  const [orderBy, setOrderBy] = useState('desc');
+  const [foundItemName,setFoundItemName] = useState('')
+  
+  const { isLoading,data } = useFoundItemsQuery({ foundItemName,page, limit, orderBy });
   const router = useRouter()
   const handleClaim = (id:string) => {
     router.push(`/claim/${id}`);
   };
 
+  const handlePageChange = (event:any) => {
+    setPage(Number(event.target.value));
+  };
+
   return (
     <div className="mt-[50px]">
       <h1 className="text-center font-bold text-2xl">Found Items</h1>
+
+      {/* filtering */}
+      <div className="flex w-[80%] flex-wrap mx-auto mt-2 gap-2">
+      <div>
+        
+        <input className="border-2 border-gray-500 rounded-md p-1" type="text" placeholder="search by title"  onChange={(e)=>setFoundItemName(e.target.value)} />
+      </div>
+      <div className="border-2 border-gray-500 rounded-md">
+        <label>Order By: </label>
+        <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
+          <option value="desc">Desc</option>
+          <option value="asc">Asc</option>
+        </select>
+      </div>
+      <div>
+        <label>Limit: </label>
+        <input className="border-2 border-gray-600 w-[100px] p-1 rounded-md" type="number" value={limit} onChange={(e) => setLimit(Number(e.target.value))} min="1" />
+      </div>
+    </div>
+      {/* filtering */}
       <div className=" flex flex-wrap gap-8 mt-[50px] w-[80%] mx-auto">
         {data?.data?.items?.map((foundItem: any, i: number) => (
           <div className="md:w-[20%] w-[90%] md:mx-0 mx-auto shadow-sm rounded-md shadow-gray-200 ">
@@ -84,6 +113,16 @@ const page = () => {
           </div>
         ))}
       </div>
+
+      {/* pagination */}
+      
+      <div className="w-[20%] mx-auto">
+        <label>Page : </label>
+        <input className="border-2 border-gray-600 w-[100px]" type="number" value={page} onChange={handlePageChange} min="1" />
+      </div>
+      
+      
+      {/* pagination */}
     </div>
   );
 };
