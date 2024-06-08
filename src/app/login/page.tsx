@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/redux/hooks'
 import { MutationError } from '@/utils/MutationError'
 import { verifyToken } from '@/utils/verifyToken'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -32,10 +32,11 @@ const page = () => {
         toast.error(error)
       }else{
         const user = await verifyToken(res?.data?.data?.data?.accessToken)
+        console.log(user);
         
         dispatch(setUser({user,token:res?.data?.data?.data?.accessToken}))
         toast.success('Logged in successfully')
-        router.push('/profile')
+        redirect('/profile')
       }
     } catch (error) {
       const errorData = error as {data:{message:string}}

@@ -5,11 +5,15 @@ import { redirect } from "next/navigation"
 
 const ProtectedRoute = ({children}:any) => {
   const {error,data,isLoading} = useMyProfileQuery('')
+  
   if(isLoading){
     return <Loading/>
   }
-  if(data?.success){
+  if(data?.success && data?.data?.role == 'user'){
     return children
+  }
+  if(data?.success &&  data?.data?.role == 'admin'){
+    redirect('/admin')
   }
   if(!data || error){
     redirect('/login')

@@ -9,3 +9,9 @@
 .edit-input{
     @apply border-2 w-full p-2 mb-8 rounded-sm
 }
+.admin-nav{
+    @apply md:mb-4 bg-slate-300 p-2 rounded-md mx-2 mb-4 hover:bg-white transition-transform
+}
+.admin-home{
+    @apply w-full md:w-[20%] md:h-[250px] shadow-md mb-4 p-4 bg-indigo-400
+}

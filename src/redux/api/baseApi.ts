@@ -11,7 +11,7 @@ export const baseApi = createApi({
        }
        return headers
     }}),
-    tagTypes:['Profile','Category','Claims'],
+    tagTypes:['Profile','Category','Claims','Users'],
     endpoints:(build)=>({
         userLogin:build.mutation({
             query:(userInfo)=>({
@@ -44,6 +44,22 @@ export const baseApi = createApi({
             }),
             providesTags:['Profile']
         }),
+        deactiveUser:build.mutation({
+            query:(userInfo)=>({
+                url:`/user/deactive/${userInfo.id}`,
+                method:"PUT",
+                body:userInfo.deactivated
+            }),
+            invalidatesTags:['Users']
+        }),
+        users:build.query({
+            query:()=>({
+                url:'/users',
+                method:'GET',
+            }),
+            providesTags:['Users']
+        }),
+        
         updateProfile:build.mutation({
             query:(userInfo)=>({
                 url:'/update',
@@ -133,4 +149,4 @@ export const baseApi = createApi({
     })
 })
 
-export const {useMyProfileQuery,useUserLoginMutation,useUserRegistrationMutation,useCategoriesQuery,useCreateCategoryMutation,useCreateFoundItemsMutation,useFoundItemsQuery,useChangePasswordMutation,useCreateLostItemsMutation,useLostItemsQuery,useCreateClaimsMutation,useAllClaimsQuery,useMyLostItemsQuery,useMyClaimsQuery,useFoundMyItemsQuery,useUpdateProfileMutation} = baseApi
+export const {useMyProfileQuery,useUserLoginMutation,useUserRegistrationMutation,useCategoriesQuery,useCreateCategoryMutation,useCreateFoundItemsMutation,useFoundItemsQuery,useChangePasswordMutation,useCreateLostItemsMutation,useLostItemsQuery,useCreateClaimsMutation,useAllClaimsQuery,useMyLostItemsQuery,useMyClaimsQuery,useFoundMyItemsQuery,useUpdateProfileMutation,useUsersQuery, useDeactiveUserMutation} = baseApi
