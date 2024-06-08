@@ -15,7 +15,7 @@ const ProfileQuery = () => {
       {data?.success ? (
         <img
           onClick={()=>setToggle(!toggle)}
-          className="w-[100px] h-[50px] rounded-md"
+          className="w-[50px] h-[50px] rounded-md"
           src={
             data?.data?.profile?.image
               ? data?.data?.profile?.image

@@ -25,7 +25,7 @@ const page = () => {
           </div>
         </div>
        
-       <div className="md:w-[80%] w-[95%] mx-auto mt-8">
+       <div className="mt-4">
         <h1 className="text-center font-bold text-xl">My Claims Items</h1>
         <MyClaims/>
        </div>

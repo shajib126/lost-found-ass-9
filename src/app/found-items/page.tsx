@@ -6,24 +6,28 @@ import { MdOutlineSubtitles } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import { MdBrandingWatermark } from "react-icons/md";
 
-
-import { IoColorFill } from "react-icons/io5";
+import { IoColorFill, IoFilterSharp } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 
-
 const page = () => {
+  const [filterToggle, setFilterToggle] = useState(false);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
-  const [orderBy, setOrderBy] = useState('desc');
-  const [foundItemName,setFoundItemName] = useState('')
-  
-  const { isLoading,data } = useFoundItemsQuery({ foundItemName,page, limit, orderBy });
-  const router = useRouter()
-  const handleClaim = (id:string) => {
+  const [orderBy, setOrderBy] = useState("desc");
+  const [foundItemName, setFoundItemName] = useState("");
+
+  const { isLoading, data } = useFoundItemsQuery({
+    foundItemName,
+    page,
+    limit,
+    orderBy,
+  });
+  const router = useRouter();
+  const handleClaim = (id: string) => {
     router.push(`/claim/${id}`);
   };
 
-  const handlePageChange = (event:any) => {
+  const handlePageChange = (event: any) => {
     setPage(Number(event.target.value));
   };
 
@@ -32,23 +36,47 @@ const page = () => {
       <h1 className="text-center font-bold text-2xl">Found Items</h1>
 
       {/* filtering */}
-      <div className="flex w-[80%] flex-wrap mx-auto mt-2 gap-2">
-      <div>
-        
-        <input className="border-2 border-gray-500 rounded-md p-1" type="text" placeholder="search by title"  onChange={(e)=>setFoundItemName(e.target.value)} />
+      <div className="w-[80%] mx-auto">
+        <small>Open filter</small>
+        <IoFilterSharp
+          onClick={() => setFilterToggle(!filterToggle)}
+          className="text-2xl font-bold"
+        />
       </div>
-      <div className="border-2 border-gray-500 rounded-md">
-        <label>Order By: </label>
-        <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
-          <option value="desc">Desc</option>
-          <option value="asc">Asc</option>
-        </select>
-      </div>
-      <div>
-        <label>Limit: </label>
-        <input className="border-2 border-gray-600 w-[100px] p-1 rounded-md" type="number" value={limit} onChange={(e) => setLimit(Number(e.target.value))} min="1" />
-      </div>
-    </div>
+
+      {filterToggle && (
+        <div className="flex w-[80%] flex-wrap mx-auto mt-2 gap-2">
+          <div>
+            <input
+              className="border-2 border-gray-500 rounded-md p-1"
+              type="text"
+              placeholder="search by title"
+              onChange={(e) => setFoundItemName(e.target.value)}
+            />
+          </div>
+          <div className="border-2 border-gray-500 rounded-md">
+            <label>Order By: </label>
+            <select
+              value={orderBy}
+              onChange={(e) => setOrderBy(e.target.value)}
+            >
+              <option value="desc">Desc</option>
+              <option value="asc">Asc</option>
+            </select>
+          </div>
+          <div>
+            <label>Limit: </label>
+            <input
+              className="border-2 border-gray-600 w-[100px] p-1 rounded-md"
+              type="number"
+              value={limit}
+              onChange={(e) => setLimit(Number(e.target.value))}
+              min="1"
+            />
+          </div>
+        </div>
+      )}
+
       {/* filtering */}
       <div className=" flex flex-wrap gap-8 mt-[50px] w-[80%] mx-auto">
         {data?.data?.items?.map((foundItem: any, i: number) => (
@@ -69,59 +97,65 @@ const page = () => {
                 {foundItem?.foundItemName}
               </h1>
               <div className="flex justify-between">
-              
                 <h1 className="flex items-center gap-2 font-bold">
-                <FaLocationArrow />
-                Location
+                  <FaLocationArrow />
+                  Location
                 </h1>
-                <h1>
-                {foundItem?.location}
-
-                </h1>
-
-              
+                <h1>{foundItem?.location}</h1>
               </div>
-             
+
               <div className="flex justify-between">
-                <h1 className="font-bold flex items-center gap-2"><MdBrandingWatermark/>Brand</h1>
-                <h1>
-                  {foundItem?.brand}
+                <h1 className="font-bold flex items-center gap-2">
+                  <MdBrandingWatermark />
+                  Brand
                 </h1>
+                <h1>{foundItem?.brand}</h1>
               </div>
               <div className="flex justify-between ">
-                <h1 className="font-bold flex items-center gap-2"><BiCategory/>Category</h1>
+                <h1 className="font-bold flex items-center gap-2">
+                  <BiCategory />
+                  Category
+                </h1>
                 <h1>{foundItem?.category?.name}</h1>
               </div>
               <div className="flex justify-between">
                 <h1 className="flex gap-1 items-center font-bold">
-                    
-                    <IoColorFill/>
-                    primary
+                  <IoColorFill />
+                  primary
                 </h1>
                 <h1>{foundItem?.primaryColor}</h1>
               </div>
               <div className="flex justify-between">
                 <h1 className="flex gap-1 items-center font-bold">
-                    
-                    <IoColorFill/>
-                    secondary
+                  <IoColorFill />
+                  secondary
                 </h1>
                 <h1>{foundItem?.secondayColor}</h1>
               </div>
             </div>
-            <button onClick={()=>handleClaim(foundItem?.id)} className="border-2 w-full mt-8 p-2 bg-red-400">Claim</button>
+            <button
+              onClick={() => handleClaim(foundItem?.id)}
+              className="border-2 w-full mt-8 p-2 bg-red-400"
+            >
+              Claim
+            </button>
           </div>
         ))}
       </div>
 
       {/* pagination */}
-      
+
       <div className="w-[20%] mx-auto">
         <label>Page : </label>
-        <input className="border-2 border-gray-600 w-[100px]" type="number" value={page} onChange={handlePageChange} min="1" />
+        <input
+          className="border-2 border-gray-600 w-[100px]"
+          type="number"
+          value={page}
+          onChange={handlePageChange}
+          min="1"
+        />
       </div>
-      
-      
+
       {/* pagination */}
     </div>
   );
