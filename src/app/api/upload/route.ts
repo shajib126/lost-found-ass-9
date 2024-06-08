@@ -12,7 +12,7 @@ import FormData from 'form-data';
 //   },
 // };
 
-export const runtime = 'edge';
+
 export const dynamic = 'force-dynamic'
 export async function POST(req: NextRequest,res:NextResponse) {
   const { image } = await req.json();
