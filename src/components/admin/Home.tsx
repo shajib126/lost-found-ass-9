@@ -27,7 +27,7 @@ const Home = () => {
             {userData?.data?.total}
           </h1>
           <div className="w-[80%] md:w-[50%]  mx-auto bg-gray-300 text-center">
-            <Link className="" href="/user">
+            <Link className="" href="/admin/user">
               All Users
             </Link>
           </div>
