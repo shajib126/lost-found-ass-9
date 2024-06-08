@@ -17,7 +17,10 @@ const Navbar = () => {
           <a>About Us</a>
           
         </li>
-        <li><a>Item 3</a></li>
+        <li>
+          <Link href='/found-items'>Found Items</Link>
+          <li><Link href='/lost-items'>Lost Items</Link></li>
+        </li>
       </ul>
     </div>
     <Link href='/' className="btn btn-ghost text-xl">Lost&Found</Link>
@@ -28,7 +31,8 @@ const Navbar = () => {
       <li>
        <a href="">About Us</a>
       </li>
-      <li><a>Item 3</a></li>
+      <li><Link href='/found-items'>Found Items</Link></li>
+      <li><Link href='/lost-items'>Lost Items</Link></li>
     </ul>
   </div>
   <div className="navbar-end">

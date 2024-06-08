@@ -1,8 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { RootState } from "../store"
+const prodApi = 'https://assign-9-five.vercel.app/api'
+const localApi = 'http://localhost:5000/api'
 
 export const baseApi = createApi({
-    baseQuery:fetchBaseQuery({baseUrl:'http://localhost:5000/api',credentials:'include',prepareHeaders:(headers,{getState})=>{
+    baseQuery:fetchBaseQuery({baseUrl:`${prodApi}`,credentials:'include',prepareHeaders:(headers,{getState})=>{
       const token = (getState() as RootState).auth.token
        
        
