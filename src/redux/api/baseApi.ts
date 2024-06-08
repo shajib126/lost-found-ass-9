@@ -50,7 +50,7 @@ export const baseApi = createApi({
             query:(userInfo)=>({
                 url:`/user/deactive/${userInfo.id}`,
                 method:"PUT",
-                body:userInfo.deactivated
+                body:userInfo
             }),
             invalidatesTags:['Users']
         }),

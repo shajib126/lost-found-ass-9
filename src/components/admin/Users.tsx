@@ -10,14 +10,18 @@ const Users = () => {
   const { isLoading, data } = useUsersQuery("");
   const [deactive] = useDeactiveUserMutation();
   const [userId, setUserId] = useState(null);
-  const [deactivated, setDeactivated] = useState("");
+  const [deactivated, setDeactivated] = useState<null | string>(null);
 
+  
+  
   const hanldeDeactiveSubmit = async (e: any) => {
     e.preventDefault();
     const userInfo = {
       id: userId,
-      deactivated: Boolean(deactivated),
+      deactivated
     };
+ 
+    
     try {
       if(!deactivated){
         toast.error('Action is required')
