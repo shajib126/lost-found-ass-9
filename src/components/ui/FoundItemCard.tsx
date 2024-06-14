@@ -14,7 +14,7 @@ const FoundItemCard = ({foundItem}:any) => {
    
     
   return (
-    <div className="md:w-[20%] w-[90%] md:mx-0 mx-auto mb-4 shadow-md p-2 rounded-md">
+    <div className="md:w-[20%] w-[100%] md:mx-0 mx-auto mb-4 shadow-md p-2 rounded-md bg-green-300">
         
         
             <img
@@ -73,7 +73,7 @@ const FoundItemCard = ({foundItem}:any) => {
                 <h1>{foundItem?.secondayColor}</h1>
               </div>
             </div>
-            <button onClick={()=>handleClaim(foundItem?.id)} className="border-2 w-full mt-8 p-2 bg-red-400">Claim</button>
+            <button onClick={()=>handleClaim(foundItem?.id)} className=" w-full mt-8 p-2 bg-green-500  hover:bg-green-600 rounded-md">Claim</button>
         
     
       </div>

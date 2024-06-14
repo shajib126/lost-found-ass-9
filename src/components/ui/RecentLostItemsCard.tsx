@@ -25,7 +25,7 @@ export type TLostItem = {
 
 const RecentLostItemsCard = ({ lostItem }: TLostItem) => {
   return (
-    <div className="md:w-[20%] w-[90%] md:mx-0 mx-auto mb-4 shadow-md p-2 rounded-md">
+    <div className="md:w-[20%] w-full md:mx-0 mx-auto mb-4 shadow-md p-2 rounded-md text-black bg-rose-300">
       <img
         className="h-[200px] w-full"
         src={

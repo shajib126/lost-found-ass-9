@@ -6,6 +6,8 @@ import Loading from './Loading'
 
 const AdminProtectedRoute = ({children}:any) => {
     const {error,data,isLoading} = useMyProfileQuery('')
+    
+    
     if(isLoading){
         return <Loading/>
     }

@@ -5,7 +5,7 @@ import Link from 'next/link'
 const Navbar = () => {
   
   return (
-    <div className="navbar bg-[#1010101A]">
+    <div className="navbar bg-[#343A40] text-white">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -35,7 +35,7 @@ const Navbar = () => {
       <li><Link href='/lost-items'>Lost Items</Link></li>
     </ul>
   </div>
-  <div className="navbar-end">
+  <div className="navbar-end  ">
     <ProfileQuery/>
   </div>
 </div>

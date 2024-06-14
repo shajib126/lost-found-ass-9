@@ -2,17 +2,20 @@
 
 import { useMyProfileQuery } from "@/redux/api/baseApi";
 import { logout } from "@/redux/features/auth/authSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
 import { useState } from "react";
+import Loading from "./Loading";
 
 const ProfileQuery = () => {
   const { error, isLoading, data } = useMyProfileQuery("");
   const [toggle, setToggle] = useState(false);
   const dispatch = useAppDispatch();
+
+ 
   return (
-    <div>
-      {data?.success ? (
+    <div className="">
+      {isLoading ? <Loading/> : data?.success ? (
         <img
           onClick={()=>setToggle(!toggle)}
           className="w-[50px] h-[50px] rounded-md"
@@ -26,7 +29,7 @@ const ProfileQuery = () => {
       ):<Link className="btn" href="/login">
       Login
     </Link>}
-    {toggle &&<div className="flex flex-col">
+    {toggle &&<div className="flex flex-col   ">
         <button onClick={() => dispatch(logout())} className="btn">
           Logout
         </button>

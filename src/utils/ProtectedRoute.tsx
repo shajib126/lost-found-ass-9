@@ -5,6 +5,11 @@ import { redirect } from "next/navigation"
 
 const ProtectedRoute = ({children}:any) => {
   const {error,data,isLoading} = useMyProfileQuery('')
+
+ 
+ 
+ 
+  
   
   if(isLoading){
     return <Loading/>
