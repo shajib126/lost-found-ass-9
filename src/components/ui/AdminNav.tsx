@@ -3,7 +3,7 @@ import React from 'react'
 
 const AdminNav = () => {
   return (
-    <nav className=' flex md:flex-col flex-wrap p-2'>
+    <nav className=' flex md:flex-col flex-wrap p-8 bg-gray-800 text-white'>
         <Link className='admin-nav' href='/admin'>Home</Link>
         <Link className='admin-nav' href='/admin/user'>User</Link>
         <Link className='admin-nav' href='/admin/lost-items'>Lost Items</Link>

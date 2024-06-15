@@ -19,7 +19,7 @@ const page = () => {
       setPage(Number(event.target.value));
     };
   return (
-    <div className="mt-20">
+    <div className="bg-rose-300 p-4">
       <h1 className="text-center text-xl font-bold mb-4">Recent Lost Item Reports</h1>
        {/* filtering */}
        <div className='w-[80%] mx-auto'>
@@ -49,7 +49,7 @@ const page = () => {
       {/* filtering */}
       <div className="w-[80%] mx-auto ">
         {isLoading ? <Loading/> : data?.data?.length <= 0 ?<h1>Lost items not found</h1> :
-        <div className=" md:flex gap-20 flex-wrap"> 
+        <div className=" md:flex gap-20 flex-wrap "> 
           {data?.data?.items.map((lostItem:any,i:number)=><RecentLostItemsCard key={i} lostItem={lostItem} />)}
         </div>
         }

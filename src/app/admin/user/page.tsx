@@ -6,7 +6,7 @@ import React from 'react'
 const page = () => {
   return (
     <AdminProtectedRoute>
-    <div className='md:flex gap-8 md:w-[80%] mx-auto mt-8 h-screen'>
+    <div className='md:flex gap-8 md:w-[100%] mx-auto  h-screen'>
 
       <AdminNav/>
       <Users/>

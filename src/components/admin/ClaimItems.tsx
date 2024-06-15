@@ -5,12 +5,11 @@ import React from 'react'
 
 const ClaimItems = () => {
     const {isLoading,data} = useAllClaimsQuery('')
-   console.log(data);
    
     
     
   return (
-    <div className='overflow-x-auto'>
+    <div className='overflow-x-auto overflow-y-auto'>
     <table className='table'>
            <thead>
             <th>#</th>

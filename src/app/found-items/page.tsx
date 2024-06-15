@@ -32,7 +32,7 @@ const page = () => {
   };
 
   return (
-    <div className="mt-[50px]">
+    <div className="p-4 bg-green-300">
       <h1 className="text-center font-bold text-2xl">Found Items</h1>
 
       {/* filtering */}
@@ -80,7 +80,7 @@ const page = () => {
       {/* filtering */}
       <div className=" flex flex-wrap gap-8 mt-[50px] w-[80%] mx-auto">
         {data?.data?.items?.map((foundItem: any, i: number) => (
-          <div className="md:w-[20%] w-[90%] md:mx-0 mx-auto shadow-sm rounded-md shadow-gray-200 ">
+          <div className="md:w-[20%] w-[90%] bg-green-400 p-4 md:mx-0 mx-auto shadow-sm rounded-md shadow-gray-200 ">
             <img
               className="h-[200px] w-full"
               src={
@@ -135,7 +135,7 @@ const page = () => {
             </div>
             <button
               onClick={() => handleClaim(foundItem?.id)}
-              className="border-2 w-full mt-8 p-2 bg-red-400"
+              className="hover:bg-green-400 w-full mt-8 p-2 bg-green-500"
             >
               Claim
             </button>

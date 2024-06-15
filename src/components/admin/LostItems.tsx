@@ -6,7 +6,7 @@ import React from 'react'
 const LostItems = () => {
     const {isLoading,data} = useLostItemsQuery('')
   return (
-    <div className='overflow-x-auto'>
+    <div className='md:overflow-hidden overflow-auto'>
     <table className='table'>
         <thead>
             <tr>
